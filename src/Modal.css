@@ -2,11 +2,6 @@ label, input, select, textarea {
   display: block;
 }
 
-fieldset {
-  border: none;
-  padding: 0;
-}
-
 label {
   margin-top: 0.8rem;
   margin-bottom: 0.4rem;
@@ -19,6 +14,11 @@ input:not([type="submit"]), select, textarea {
   padding: 0.4rem;
   font-size: 1rem;
   width: 100%;
+}
+
+input[type="submit"] {
+  float: left;
+  margin-right: 0.8rem;
 }
 
 select {
@@ -50,7 +50,7 @@ select {
   position: absolute;
   z-index: 2;
   border-radius: 5px;
-  padding: 1.6rem;
+  padding: 1rem 1.6rem 1.6rem;
   background-color: #FFFFFF;
   width: 600px;
   top: 50%;
@@ -58,6 +58,16 @@ select {
   transform: translateY(-50%) translateX(-50%);
 }
 
-.modal:focus {
-  border: 2px solid red;
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal_content--hidden {
+  display: none;
+}
+
+.modal__form-actions {
+  padding-top: 0.8rem;
 }

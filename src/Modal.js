@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FormInputs from './FormInputs';
 import './Modal.css';
 
 class Modal extends Component {
@@ -8,18 +9,25 @@ class Modal extends Component {
     this.modal = React.createRef();
     this.closeButton = React.createRef();
     this.cancelButton = React.createRef();
+    this.modalOverlay = React.createRef();
+    this.message = React.createRef();
 
-    this.closeModal = this.closeModal.bind(this);
     this.focusCloseButton = this.focusCloseButton.bind(this);
     this.focusCancelButton = this.focusCancelButton.bind(this);
+    this.closeOnEscape = this.closeOnEscape.bind(this);
+
+    document.onkeyup = this.closeOnEscape;
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     this.modal.current.focus();
   }
 
-  closeModal() {
-    this.props.closeModal();
+  closeOnEscape(evt) {
+    if (evt.keyCode === 27 && this.props.isVisible) {
+      evt.preventDefault();
+      this.props.closeModal();
+    }
   }
 
   focusCloseButton(evt) {
@@ -39,39 +47,46 @@ class Modal extends Component {
   render() {
     return (
       <div className={`modal-container ${this.props.isVisible ? 'modal-container--visible' : '' }`}>
-        <div className="modal-overlay"></div>
+        <div className="modal-overlay" ref={this.modalOverlay} onClick={this.props.closeModal}></div>
         <div
           className="modal"
           ref={this.modal}
           tabIndex="0"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="ModalHeader"
         >
-          <button onClick={this.closeModal} ref={this.closeButton} onKeyDown={this.focusCancelButton}>Close</button>
-          <h2>Register for a class</h2>
-          <form>
-            <fieldset>
-              <label htmlFor="FullName">Full name</label>
-              <input type="text" id="FullName" />
-              <label htmlFor="EmailAddress">Email address</label>
-              <input type="text" id="EmailAddress" />
-            </fieldset>
-            <fieldset>
-              <label htmlFor="SelectClass">Which class are you registering for?</label>
-              <select id="SelectClass">
-                <option value="stateful">Stateful yoga (Thursday at 6:30pm)</option>
-                <option value="componentized">Componentized yoga (Monday at 5:00pm)</option>
-                <option value="asynchronous">Asynchronous yoga (Saturday at 11:00am)</option>
-              </select>
-              <label htmlFor="Info">Are there any considerations you'd like to share with the instructor (e.g., injuries, sensitivities, requests)?</label>
-              <textarea id="Info" />
-            </fieldset>
-            <div>
-              <input type="submit" value="Log in" className="button button--primary" />
+          <div className="modal__header">
+            <h2 id="ModalHeader">Register for a class</h2>
+            <button
+              className="button button--icon"
+              onClick={this.props.closeModal}
+              ref={this.closeButton}
+              onKeyDown={this.focusCancelButton}
+              tabIndex="0"
+            >
+              <i className="fas fa-times"
+                aria-hidden="true"
+              />
+              <span className="visually-hidden">Close</span>
+            </button>
+          </div>
+          <p>You are registering for <strong>Stateful yoga (Thursday at 6:30pm)</strong>.</p>
+          <form onSubmit={this.onFormSubmit}>
+            <FormInputs />
+            <div className="modal__form-actions">
+              <input
+                type="submit"
+                value="Sign up"
+                className="button button--primary"
+              />
               <button
                 className="button"
-                onClick={this.closeModal}
-                ref={this.cancelButton} onKeyDown={this.focusCloseButton}
+                ref={this.cancelButton}
+                onKeyDown={this.focusCloseButton}
+                onClick={this.props.closeModal}
                 tabIndex="0"
-              >Cancel</button>
+              >Close</button>
             </div>
           </form>
         </div>

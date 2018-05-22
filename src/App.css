@@ -4,6 +4,23 @@
   box-sizing: border-box;
 }
 
+.clearfix {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.visually-hidden {
+  position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	padding:0 !important;
+	border:0 !important;
+	height: 1px !important;
+	width: 1px !important;
+	overflow: hidden;
+}
+
 html,
 body {
   margin: 0;
@@ -68,6 +85,10 @@ h3 {
   font-family: inherit;
 }
 
+.button:hover {
+  text-decoration: underline;
+}
+
 .button--primary {
   background-color: #3A5D5F;
   border: 1px solid #294242;
@@ -77,5 +98,12 @@ h3 {
 
 .button--primary:hover {
   background-color: #294242;
-  text-decoration: underline;
+}
+
+.button--icon {
+  background-color: transparent;
+  font-size: 1.6rem;
+  padding: 0.6rem;
+  border: none;
+  color: #686868;
 }

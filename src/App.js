@@ -6,15 +6,16 @@ import YogaClassImage from './class-1.jpg'
 
 class App extends Component {
   state = {
-    openModal: true,
+    openModal: false,
   }
 
   constructor(props) {
     super(props);
 
+    this.modalTrigger = React.createRef();
+
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.setModalTrigger = this.setModalTrigger.bind(this);
   }
 
   openModal() {
@@ -28,15 +29,20 @@ class App extends Component {
       openModal: false,
     });
 
-    this.modalTrigger.focus();
+    this.modalTrigger.current.focus();
   }
 
-  setModalTrigger(buttonElement) {
-    if (this.modalTrigger) {
-      return;
+  renderModal() {
+    if (this.state.openModal) {
+      return (
+        <Modal
+          isVisible={this.state.openModal}
+          closeModal={this.closeModal}
+        />
+      );
     }
 
-    this.modalTrigger = buttonElement;
+    return null;
   }
 
   render() {
@@ -56,22 +62,17 @@ class App extends Component {
                 <button
                   className="button button--primary"
                   onClick={this.openModal}
-                  ref={this.setModalTrigger}
+                  ref={this.modalTrigger}
                 >
                   Register
                 </button>
               </div>
             </div>
             <div className="yoga-class__image">
-              <img src={YogaClassImage} />
+              <img src={YogaClassImage} alt="Three women doing plank pose in a yoga studio." />
             </div>
           </div>
-          <div aria-hidden={!this.state.openModal}>
-            <Modal
-              isVisible={this.state.openModal}
-              closeModal={this.closeModal}
-            />
-          </div>
+          {this.renderModal()}
         </main>
 
       </div>
