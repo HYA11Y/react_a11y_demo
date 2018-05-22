@@ -1,0 +1,63 @@
+label, input, select, textarea {
+  display: block;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+label {
+  margin-top: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+input:not([type="submit"]), select, textarea {
+  margin-bottom: 0.8rem;
+  border-radius: 3px;
+  border: 1px solid #3A5D5F;
+  padding: 0.4rem;
+  font-size: 1rem;
+  width: 100%;
+}
+
+select {
+  -webkit-appearance: none;
+}
+
+.modal-container {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 100vh;
+}
+
+.modal-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.modal-container--visible {
+  display: block;
+}
+
+.modal {
+  position: absolute;
+  z-index: 2;
+  border-radius: 5px;
+  padding: 1.6rem;
+  background-color: #FFFFFF;
+  width: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.modal:focus {
+  border: 2px solid red;
+}
