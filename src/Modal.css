@@ -71,3 +71,9 @@ select {
 .modal__form-actions {
   padding-top: 0.8rem;
 }
+
+@media all and (max-width: 640px) {
+  .modal {
+    width: 95%;
+  }
+}

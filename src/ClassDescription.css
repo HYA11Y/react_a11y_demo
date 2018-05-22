@@ -35,3 +35,27 @@
   margin-top: 0.8rem;
   margin-bottom: 1.6rem;
 }
+
+@media all and (max-width: 700px) {
+  .yoga-class__description {
+    width: 60%;
+  }
+
+  .yoga-class__image {
+    width: 40%;
+  }
+
+  .yoga-class__image img {
+    object-position: 70%;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .yoga-class__description {
+    width: 100%;
+  }
+
+  .yoga-class__image {
+    display: none;
+  }
+}

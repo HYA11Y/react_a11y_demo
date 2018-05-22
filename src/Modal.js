@@ -15,19 +15,26 @@ class Modal extends Component {
     this.focusCloseButton = this.focusCloseButton.bind(this);
     this.focusCancelButton = this.focusCancelButton.bind(this);
     this.closeOnEscape = this.closeOnEscape.bind(this);
+    this.closeModal = this.closeModal.bind(this);
 
     document.onkeyup = this.closeOnEscape;
   }
 
   componentDidMount() {
     this.modal.current.focus();
+    document.body.classList.add('no-scroll');
   }
 
   closeOnEscape(evt) {
     if (evt.keyCode === 27 && this.props.isVisible) {
       evt.preventDefault();
-      this.props.closeModal();
+      this.closeModal();
     }
+  }
+
+  closeModal() {
+    document.body.classList.remove('no-scroll');
+    this.props.closeModal();
   }
 
   focusCloseButton(evt) {
@@ -47,7 +54,7 @@ class Modal extends Component {
   render() {
     return (
       <div className={`modal-container ${this.props.isVisible ? 'modal-container--visible' : '' }`}>
-        <div className="modal-overlay" ref={this.modalOverlay} onClick={this.props.closeModal}></div>
+        <div className="modal-overlay" ref={this.modalOverlay} onClick={this.closeModal}></div>
         <div
           className="modal"
           ref={this.modal}
@@ -60,7 +67,7 @@ class Modal extends Component {
             <h2 id="ModalHeader">Register for a class</h2>
             <button
               className="button button--icon"
-              onClick={this.props.closeModal}
+              onClick={this.closeModal}
               ref={this.closeButton}
               onKeyDown={this.focusCancelButton}
               tabIndex="0"
@@ -84,7 +91,7 @@ class Modal extends Component {
                 className="button"
                 ref={this.cancelButton}
                 onKeyDown={this.focusCloseButton}
-                onClick={this.props.closeModal}
+                onClick={this.closeModal}
                 tabIndex="0"
               >Close</button>
             </div>
