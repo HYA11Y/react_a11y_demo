@@ -20,9 +20,11 @@ class Modal extends Component {
     document.onkeyup = this.closeOnEscape;
   }
 
-  componentDidMount() {
-    this.modal.current.focus();
-    document.body.classList.add('no-scroll');
+  componentDidUpdate() {
+    if (this.props.isVisible) {
+      this.modal.current.focus();
+      document.body.classList.add('no-scroll');
+    }
   }
 
   closeOnEscape(evt) {
@@ -53,8 +55,12 @@ class Modal extends Component {
 
   render() {
     return (
-      <div className={`modal-container ${this.props.isVisible ? 'modal-container--visible' : '' }`}>
-        <div className="modal-overlay" ref={this.modalOverlay} onClick={this.closeModal}></div>
+      <div aria-hidden={!this.props.isVisible} className={`modal-container ${this.props.isVisible ? 'modal-container--visible' : '' }`}>
+        <div
+          className="modal-overlay"
+          ref={this.modalOverlay}
+          onClick={this.closeModal}
+        />
         <div
           className="modal"
           ref={this.modal}
@@ -62,6 +68,7 @@ class Modal extends Component {
           role="dialog"
           aria-modal="true"
           aria-labelledby="ModalHeader"
+          aria-describedby="ModalDescription"
         >
           <div className="modal__header">
             <h2 id="ModalHeader">Register for a class</h2>
@@ -72,13 +79,11 @@ class Modal extends Component {
               onKeyDown={this.focusCancelButton}
               tabIndex="0"
             >
-              <i className="fas fa-times"
-                aria-hidden="true"
-              />
-              <span className="visually-hidden">Close</span>
+              <i className="fas fa-times" aria-hidden="true" />
+              <span className="visually-hidden">Close registration form</span>
             </button>
           </div>
-          <p>You are registering for <strong>Stateful yoga (Thursday at 6:30pm)</strong>.</p>
+          <p id="ModalDescription">You are registering for <strong>Stateful yoga (Thursday at 6:30pm)</strong>.</p>
           <form onSubmit={this.onFormSubmit}>
             <FormInputs />
             <div className="modal__form-actions">
@@ -93,7 +98,7 @@ class Modal extends Component {
                 onKeyDown={this.focusCloseButton}
                 onClick={this.closeModal}
                 tabIndex="0"
-              >Close</button>
+              >Cancel</button>
             </div>
           </form>
         </div>

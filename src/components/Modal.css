@@ -35,15 +35,15 @@ select {
   height: 100vh;
 }
 
+.modal-container--visible {
+  display: block;
+}
+
 .modal-overlay {
   position: absolute;
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.7);
-}
-
-.modal-container--visible {
-  display: block;
 }
 
 .modal {

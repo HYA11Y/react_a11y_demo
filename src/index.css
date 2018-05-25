@@ -1,5 +1,71 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+.clearfix {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.visually-hidden {
+  position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	padding:0 !important;
+	border:0 !important;
+	height: 1px !important;
+	width: 1px !important;
+	overflow: hidden;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+html,
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  /* background-color: #4b787b; */
+  /* color: #ffffff; */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 700;
+}
+
+h1, h2 {
+  font-size: 2rem;
+}
+
+h1 {
+  position: relative;
+  padding-right: 1rem;
+  color: #4F5451;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  right: 0;
+  border: 1px solid #4F5451;
+}
+
+h2 {
+  font-weight: 300;
+  color: #3A5D5F;
 }

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Modal from './Modal';
 import './App.css';
-import './ClassDescription.css';
-import YogaClassImage from './class-1.jpg'
+import YogaClassImage from '../images/class-1.jpg'
 
 class App extends Component {
   state = {
@@ -33,16 +32,12 @@ class App extends Component {
   }
 
   renderModal() {
-    if (this.state.openModal) {
-      return (
-        <Modal
-          isVisible={this.state.openModal}
-          closeModal={this.closeModal}
-        />
-      );
-    }
-
-    return null;
+    return (
+      <Modal
+        isVisible={this.state.openModal}
+        closeModal={this.closeModal}
+      />
+    );
   }
 
   render() {
@@ -63,9 +58,7 @@ class App extends Component {
                   className="button button--primary"
                   onClick={this.openModal}
                   ref={this.modalTrigger}
-                >
-                  Register
-                </button>
+                >Register<span className="visually-hidden"> for Stateful yoga</span></button>
               </div>
             </div>
             <div className="yoga-class__image">

@@ -1,3 +1,40 @@
+.subheading {
+  padding-left: 1rem;
+}
+
+.button {
+  box-shadow: none;
+  background-color: #EBEBE5;
+  border-radius: 5px;
+  border: 1px solid #D6D6C7;
+  padding: 0.8rem 1.6rem;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.button:hover {
+  text-decoration: underline;
+}
+
+.button--primary {
+  background-color: #3A5D5F;
+  border: 1px solid #294242;
+  color: #FFFFFF;
+  transition: background-color 0.2s;
+}
+
+.button--primary:hover {
+  background-color: #294242;
+}
+
+.button--icon {
+  background-color: transparent;
+  font-size: 1.6rem;
+  padding: 0.6rem;
+  border: none;
+  color: #686868;
+}
+
 .wrapper {
   max-width: 1600px;
   margin: 0 auto;
