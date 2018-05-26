@@ -8,10 +8,6 @@ class Modal extends Component {
   constructor(props) {
     super(props);
 
-    this.modal = React.createRef();
-    this.closeButton = React.createRef();
-    this.cancelButton = React.createRef();
-
     this.handleKeyDownOnCancelButton = this.handleKeyDownOnCancelButton.bind(this);
     this.handleKeyDownOnCloseButton = this.handleKeyDownOnCloseButton.bind(this);
     this.closeOnEscape = this.closeOnEscape.bind(this);
@@ -22,7 +18,6 @@ class Modal extends Component {
 
   componentDidUpdate() {
     if (this.props.isVisible) {
-      this.modal.current.focus();
       document.body.classList.add('no-scroll');
     }
   }
@@ -40,21 +35,11 @@ class Modal extends Component {
   }
 
   handleKeyDownOnCancelButton(evt) {
-    const shiftFocusToNextInteractiveElement = evt.keyCode === TAB_KEY && !evt.nativeEvent.shiftKey;
 
-    if (shiftFocusToNextInteractiveElement) {
-      evt.preventDefault();
-      this.closeButton.current.focus();
-    }
   }
 
   handleKeyDownOnCloseButton(evt) {
-    const shiftFocusToPreviousInteractiveElement = evt.keyCode === TAB_KEY && evt.nativeEvent.shiftKey;
 
-    if (shiftFocusToPreviousInteractiveElement) {
-      evt.preventDefault();
-      this.cancelButton.current.focus();
-    }
   }
 
   render() {
@@ -69,8 +54,6 @@ class Modal extends Component {
         />
         <div
           className="modal"
-          ref={this.modal}
-          tabIndex="0"
           role="dialog"
           aria-modal="true"
           aria-labelledby="ModalHeader"
@@ -81,9 +64,7 @@ class Modal extends Component {
             <button
               className="button button--icon"
               onClick={this.closeModal}
-              ref={this.closeButton}
               onKeyDown={this.handleKeyDownOnCloseButton}
-              tabIndex="0"
             >
               <i className="fas fa-times" aria-hidden="true" />
               <span className="visually-hidden">Close registration form</span>
@@ -96,10 +77,8 @@ class Modal extends Component {
             >Confirm</button>
             <button
               className="button"
-              ref={this.cancelButton}
               onKeyDown={this.handleKeyDownOnCancelButton}
               onClick={this.closeModal}
-              tabIndex="0"
             >Cancel</button>
           </div>
         </div>
