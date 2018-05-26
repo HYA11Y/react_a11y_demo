@@ -8,8 +8,8 @@ class Modal extends Component {
   constructor(props) {
     super(props);
 
-    this.handleKeyDownOnCancelButton = this.handleKeyDownOnCancelButton.bind(this);
-    this.handleKeyDownOnCloseButton = this.handleKeyDownOnCloseButton.bind(this);
+    this.handleTabKeyPress = this.handleTabKeyPress.bind(this);
+    this.handleShiftTabKeyPress = this.handleShiftTabKeyPress.bind(this);
     this.closeOnEscape = this.closeOnEscape.bind(this);
     this.closeModal = this.closeModal.bind(this);
 
@@ -34,11 +34,11 @@ class Modal extends Component {
     this.props.closeModal();
   }
 
-  handleKeyDownOnCancelButton(evt) {
+  handleTabKeyPress(evt) {
 
   }
 
-  handleKeyDownOnCloseButton(evt) {
+  handleShiftTabKeyPress(evt) {
 
   }
 
@@ -64,7 +64,7 @@ class Modal extends Component {
             <button
               className="button button--icon"
               onClick={this.closeModal}
-              onKeyDown={this.handleKeyDownOnCloseButton}
+              onKeyDown={this.handleShiftTabKeyPress}
             >
               <i className="fas fa-times" aria-hidden="true" />
               <span className="visually-hidden">Close registration form</span>
@@ -77,7 +77,7 @@ class Modal extends Component {
             >Confirm</button>
             <button
               className="button"
-              onKeyDown={this.handleKeyDownOnCancelButton}
+              onKeyDown={this.handleTabKeyPress}
               onClick={this.closeModal}
             >Cancel</button>
           </div>
