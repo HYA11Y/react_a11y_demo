@@ -20,6 +20,23 @@ cd react_a11y_demo
 
 2. Run `npm install` or `yarn install` to download the packages required to run this project.
 
-
-## Running the app
+## Running the code-along
 Run `npm start` or `yarn start` to start your local server. It will launch `http://localhost:3000/` in your default browser.
+
+You can checkout the `solution` branch to see the answers for this code-along. 
+
+## Goal
+This code-along is designed to demonstrate how to manage focus in React modal components. The finished product should implement the following keyboard interactions:
+
+1. When the modal is triggered, either the `div.modal` element or the first interactive element inside the modal (the close button) should receive focus.
+
+2. When the last interactive element in the modal is in focus and the user presses the `Tab` key, the first interactive element in the modal (the close button) should receive focus.
+
+3. When the first interactive element in the modal is in focus and the user presses `Shift` + `Tab`, the last interactive element in the modal (the cancel button) should receive focus.
+
+4. Closing the modal causes focus to shift to the element that triggered the modal.
+
+## Not in scope
+- A click event is not attached to the `Confirm` button in this demo.
+
+
